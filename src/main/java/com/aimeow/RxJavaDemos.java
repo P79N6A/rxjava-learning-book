@@ -23,6 +23,16 @@ public class RxJavaDemos {
         return this;
     }
 
+    RxJavaDemos rxtest2() {
+        Flowable a = Flowable.range(1,10).filter(num -> num < 5)
+            .switchIfEmpty(Flowable.just(5)).defaultIfEmpty(6);
+
+        a.subscribe(num -> {
+            print(num);
+        });
+        return this;
+    }
+
     <T> RxJavaDemos print(T str) {
         ReactiveUtil.print(str);
         return this;
